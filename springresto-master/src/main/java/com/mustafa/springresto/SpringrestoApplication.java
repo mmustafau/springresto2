@@ -9,6 +9,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class SpringrestoApplication {
+    static int asd=0;
+    static Counter counter = new Counter(asd);
 
     public static void main(String[] args) {
         SpringApplication.run(SpringrestoApplication.class, args);
@@ -22,8 +24,9 @@ public class SpringrestoApplication {
 
         Thread thread =new Thread(new Runnable() {
 
-            int asd=0;
 
+
+            //Counter counter = new Counter(asd)     ;
             @Override
             public void run() {
             while(true){
@@ -37,6 +40,8 @@ public class SpringrestoApplication {
                 System.out.println(asd);
                 asd++;
                 asd++;
+
+                counter.setSayi(asd);
 
             }}
         });
