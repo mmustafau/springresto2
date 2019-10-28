@@ -3,12 +3,15 @@ package com.mustafa.springresto;
 
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
@@ -21,9 +24,20 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class CounterController {
 
 
+    @RequestMapping(value="/all")
+        public  ResponseEntity<Counter>get(){
+        Counter counter=new Counter();
+        counter.setSayi(SpringrestoApplication.counter.getSayi());
+        counter.setListe(SpringrestoApplication.counter.getListe());
 
 
+        return new ResponseEntity<Counter>(counter, HttpStatus.OK);
+    }
 
+
+}
+
+/*
 
     @RequestMapping("/counter")
     public int asd() {
@@ -33,6 +47,13 @@ public class CounterController {
 
     }
 
-//(value="sayi", defaultValue= "0" ) int sayi
+    @RequestMapping("/counterList")
+    public ArrayList<Integer> liste() {
 
-}
+        return SpringrestoApplication.liste;
+
+
+    }
+
+//(value="sayi", defaultValue= "0" ) int sayi
+*/
