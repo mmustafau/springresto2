@@ -12,9 +12,7 @@ import java.util.List;
 public class Counter {
 
 
-    private @Id
-    @GeneratedValue
-    Long id;
+    private @Id @GeneratedValue Long id;
     private int sayi;
 
   //  @OneToMany(targetEntity=Counter.class, mappedBy="college", fetch= FetchType.EAGER)

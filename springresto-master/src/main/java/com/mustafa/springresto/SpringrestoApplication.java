@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Deque;
 import java.util.List;
 
 
@@ -13,7 +14,7 @@ import java.util.List;
 public class SpringrestoApplication {
 
     static Counter counter = new Counter();
-
+    static  TransDeque transDeque=new TransDeque();
 
     public static void main(String[] args) {
         SpringApplication.run(SpringrestoApplication.class, args);
@@ -26,11 +27,14 @@ public class SpringrestoApplication {
 
         System.out.println("asdasdasd");
 
+        Vehicle vehic=new Vehicle();
+        vehic.setV_title("asdasd");
+        vehic.setV_category("cateeg");
+
+
+
         Thread thread =new Thread(new Runnable() {
 
-
-
-          ;
             @Override
             public void run() {
                 //counter.setSayi(0);
@@ -48,6 +52,7 @@ public class SpringrestoApplication {
 
                 System.out.println(asd);
 
+                System.out.println(transDeque.getDeque());
                 asd++;
                 asd++;
               counter.getListe().add(asd);
