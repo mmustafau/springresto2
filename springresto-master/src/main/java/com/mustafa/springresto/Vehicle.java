@@ -18,7 +18,7 @@ public class Vehicle {
 
     Vehicle() {}
 
-    Vehicle(String v_title,String v_category){
+    Vehicle(int id, String v_title,String v_category){
 
         this.v_title=v_title;
         this.v_category=v_category;

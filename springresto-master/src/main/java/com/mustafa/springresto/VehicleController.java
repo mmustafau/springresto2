@@ -3,9 +3,12 @@ package com.mustafa.springresto;
 
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.IanaLinkRelations;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -28,8 +31,41 @@ public class VehicleController {
 
        deque.addFirst(newVehicle);
 
+
+
+
+
         return new ResponseEntity<Vehicle>(newVehicle, HttpStatus.OK);
     }
+
+
+    @RequestMapping(value = "/VehicleRemoving")
+    ResponseEntity<?> bos(@RequestBody Vehicle newVehicle) throws URISyntaxException {
+
+        deque.removeFirst();
+
+
+        RestTemplate restTemplate = new RestTemplate();
+        final String baseUrl = "http://localhost:5000/VehicleRemoving";
+        URI uri = null;
+        try {
+            uri = new URI(baseUrl);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("X-COM-PERSIST", "true");
+        headers.set("X-COM-LOCATION", "USA");
+
+        HttpEntity<Vehicle> request = new HttpEntity<>(newVehicle, headers);
+
+        ResponseEntity<String> result = restTemplate.postForEntity(uri, request, String.class);
+
+
+        return new ResponseEntity<Vehicle>(newVehicle, HttpStatus.OK);
+    }
+
 
 /*
     @PostMapping("/VehicleAdding")
